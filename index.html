@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Theory Flashcards - Warm-up Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.3/build/cjs/vexflow.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Music Theory Flashcards</h1>
+            <p class="subtitle">Piano Warm-up Game</p>
+        </header>
+
+        <div class="game-setup" id="gameSetup">
+            <div class="difficulty-section">
+                <label for="difficulty">Difficulty Level:</label>
+                <div class="difficulty-controls">
+                    <input type="range" id="difficulty" min="1" max="20" value="5">
+                    <span class="difficulty-value" id="difficultyValue">5</span>
+                </div>
+                <div class="difficulty-description" id="difficultyDescription">
+                    Elementary - Extended range, major/minor triads
+                </div>
+            </div>
+
+            <div class="midi-status">
+                <span class="status-label">MIDI Device:</span>
+                <span class="status-indicator" id="midiStatus">Not Connected</span>
+            </div>
+
+            <button class="btn btn-primary btn-large" id="startBtn">Start Round</button>
+        </div>
+
+        <div class="game-area hidden" id="gameArea">
+            <div class="game-header">
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Time:</span>
+                        <span class="stat-value" id="timer">3:00</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Score:</span>
+                        <span class="stat-value" id="score">0 / 0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Streak:</span>
+                        <span class="stat-value" id="streak">0</span>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" id="pauseBtn">Pause</button>
+            </div>
+
+            <div class="question-card">
+                <div class="question-number">Question <span id="questionNum">1</span></div>
+                <div class="question-type" id="questionType">Note Identification</div>
+                <div class="question-text" id="questionText">What note is shown?</div>
+
+                <div class="notation-container" id="notationContainer"></div>
+
+                <div class="answer-section">
+                    <div class="answer-buttons" id="answerButtons">
+                        <!-- Answer buttons will be generated dynamically -->
+                    </div>
+
+                    <div class="midi-input-hint" id="midiHint">
+                        Or play the answer on your MIDI keyboard
+                    </div>
+                </div>
+
+                <div class="feedback hidden" id="feedback">
+                    <div class="feedback-message"></div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="results-screen hidden" id="resultsScreen">
+            <h2>Round Complete!</h2>
+            <div class="final-stats">
+                <div class="final-stat">
+                    <div class="final-stat-label">Final Score</div>
+                    <div class="final-stat-value" id="finalScore">0%</div>
+                </div>
+                <div class="final-stat">
+                    <div class="final-stat-label">Questions Answered</div>
+                    <div class="final-stat-value" id="finalQuestions">0</div>
+                </div>
+                <div class="final-stat">
+                    <div class="final-stat-label">Best Streak</div>
+                    <div class="final-stat-value" id="finalStreak">0</div>
+                </div>
+            </div>
+            <div class="results-message" id="resultsMessage"></div>
+            <div class="button-group">
+                <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                <button class="btn btn-secondary" id="changeDifficultyBtn">Change Difficulty</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
