@@ -15,6 +15,11 @@
         </header>
 
         <div class="game-setup" id="gameSetup">
+            <div class="name-section">
+                <label for="studentName">Your Name:</label>
+                <input type="text" id="studentName" placeholder="Enter your name" class="name-input">
+            </div>
+
             <div class="difficulty-section">
                 <label for="difficulty">Difficulty Level:</label>
                 <div class="difficulty-controls">
@@ -35,6 +40,8 @@
         </div>
 
         <div class="game-area hidden" id="gameArea">
+            <div class="welcome-message" id="welcomeMessage"></div>
+
             <div class="game-header">
                 <div class="stats">
                     <div class="stat-item">
@@ -81,7 +88,7 @@
         </div>
 
         <div class="results-screen hidden" id="resultsScreen">
-            <h2>Round Complete!</h2>
+            <h2 id="resultsTitle">Round Complete!</h2>
             <div class="final-stats">
                 <div class="final-stat">
                     <div class="final-stat-label">Final Score</div>

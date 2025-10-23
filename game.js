@@ -3,6 +3,7 @@
 
 class MusicTheoryGame {
     constructor() {
+        this.studentName = '';
         this.difficulty = 5;
         this.timeLimit = 180; // 3 minutes in seconds
         this.timeRemaining = this.timeLimit;
@@ -163,6 +164,10 @@ class MusicTheoryGame {
     }
 
     startGame() {
+        // Capture student name
+        const nameInput = document.getElementById('studentName').value.trim();
+        this.studentName = nameInput || 'Student';
+
         this.score = 0;
         this.totalQuestions = 0;
         this.currentStreak = 0;
@@ -175,9 +180,25 @@ class MusicTheoryGame {
         document.getElementById('resultsScreen').classList.add('hidden');
         document.getElementById('gameArea').classList.remove('hidden');
 
+        // Display welcome message
+        this.showWelcomeMessage();
+
         this.updateDisplay();
         this.startTimer();
         this.nextQuestion();
+    }
+
+    showWelcomeMessage() {
+        const welcomeEl = document.getElementById('welcomeMessage');
+        const greetings = [
+            `Welcome, ${this.studentName}! Let's warm up!`,
+            `Good luck, ${this.studentName}!`,
+            `Ready to practice, ${this.studentName}?`,
+            `Let's do this, ${this.studentName}!`,
+            `Time to shine, ${this.studentName}!`
+        ];
+        const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+        welcomeEl.textContent = randomGreeting;
     }
 
     startTimer() {
@@ -642,11 +663,19 @@ class MusicTheoryGame {
 
         if (correct) {
             feedback.classList.add('correct');
-            feedback.querySelector('.feedback-message').textContent = 'Correct! Well done!';
+            const correctMessages = [
+                `Correct, ${this.studentName}! Well done!`,
+                `Excellent work, ${this.studentName}!`,
+                `Perfect, ${this.studentName}!`,
+                `Great job, ${this.studentName}!`,
+                `You got it, ${this.studentName}!`
+            ];
+            const randomMessage = correctMessages[Math.floor(Math.random() * correctMessages.length)];
+            feedback.querySelector('.feedback-message').textContent = randomMessage;
         } else {
             feedback.classList.add('incorrect');
             feedback.querySelector('.feedback-message').textContent =
-                `Incorrect. The answer is ${this.currentQuestion.correctAnswer}`;
+                `Not quite, ${this.studentName}. The answer is ${this.currentQuestion.correctAnswer}`;
         }
     }
 
@@ -660,6 +689,9 @@ class MusicTheoryGame {
         document.getElementById('gameArea').classList.add('hidden');
         document.getElementById('resultsScreen').classList.remove('hidden');
 
+        // Personalize results title
+        document.getElementById('resultsTitle').textContent = `Great Work, ${this.studentName}!`;
+
         document.getElementById('finalScore').textContent = percentage + '%';
         document.getElementById('finalQuestions').textContent =
             `${this.score} / ${this.totalQuestions}`;
@@ -670,12 +702,12 @@ class MusicTheoryGame {
     }
 
     getResultsMessage(percentage) {
-        if (percentage >= 90) return 'Outstanding! You\'re a music theory master!';
-        if (percentage >= 80) return 'Excellent work! Keep it up!';
-        if (percentage >= 70) return 'Great job! You\'re making good progress!';
-        if (percentage >= 60) return 'Good effort! Keep practicing!';
-        if (percentage >= 50) return 'Not bad! Try reviewing the concepts.';
-        return 'Keep practicing! You\'ll improve with time!';
+        if (percentage >= 90) return `Outstanding, ${this.studentName}! You're a music theory master!`;
+        if (percentage >= 80) return `Excellent work, ${this.studentName}! Keep it up!`;
+        if (percentage >= 70) return `Great job, ${this.studentName}! You're making good progress!`;
+        if (percentage >= 60) return `Good effort, ${this.studentName}! Keep practicing!`;
+        if (percentage >= 50) return `Not bad, ${this.studentName}! Try reviewing the concepts.`;
+        return `Keep practicing, ${this.studentName}! You'll improve with time!`;
     }
 
     showSetup() {
